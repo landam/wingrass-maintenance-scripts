@@ -6,13 +6,13 @@ REM
 echo Clean-up...
 REM
 REM call :cleanUp 32
-REM call :cleanUp 64
+call :cleanUp 64
 
 REM
 echo Compiling GRASS GIS...
 REM
 REM C:\msys32\usr\bin\bash.exe .\grass_compile.sh 32
-REM C:\msys64\usr\bin\bash.exe .\grass_compile.sh 64
+C:\msys64\usr\bin\bash.exe .\grass_compile.sh 64
 
 REM
 echo Clean-up for packaging...
@@ -57,8 +57,6 @@ echo Publishing packages...
 REM
 REM C:\msys32\usr\bin\bash.exe .\grass_copy_wwwroot.sh 32
 C:\msys64\usr\bin\bash.exe .\grass_copy_wwwroot.sh 64
-
-pause
 
 exit /b %ERRORLEVEL%
 
