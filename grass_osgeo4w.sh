@@ -47,6 +47,7 @@ function rsync_package {
 
 if test -z $2 ; then
     # dev packages
+    rsync_package 74
     rsync_package 76
     rsync_package 77
 else

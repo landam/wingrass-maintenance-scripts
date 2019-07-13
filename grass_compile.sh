@@ -52,6 +52,7 @@ function compile {
 
 if test -z $2 ; then
     # dev packages
+    compile grass74 -daily
     compile grass76 -daily
     compile grass77 -daily
 else

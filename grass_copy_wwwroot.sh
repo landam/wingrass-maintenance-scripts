@@ -76,6 +76,7 @@ echo "... ($PLATFORM_DIR)"
 
 if test -z $2 ; then
     # daily builds
+    copy        74       7.4.svn
     copy        76       7.6.svn
     copy        77       7.7.dev
     # releases

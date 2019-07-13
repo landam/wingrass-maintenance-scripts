@@ -78,6 +78,7 @@ function create_log {
 
 if test -z $2 ; then
     # dev packages
+    update 74
     update 76
     update 77
 else
