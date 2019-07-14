@@ -29,11 +29,12 @@ update_setup() {
 	(cd ${HOME}/src/grass$1 && git pull && cd mswindows/osgeo4w && make)
 	file=${HOME}/src/grass$1/mswindows/osgeo4w/setup_${p}.hint
 	pattern=${SRC}/grass$1/${p}/osgeo4w/*[0-9].tar.bz2
-    
-	curr=`ls -r -w1 $pattern | head -n1 | cut -d'-' -f4,5 | cut -d'.' -f1`
-	prev=`ls -r -w1 $pattern | head -n2 | tail -n1 | cut -d'-' -f4,5 | cut -d'.' -f1`
+
+	curr=`ls -t -w1 $pattern | head -n1 | cut -d'-' -f4,5 | cut -d'.' -f1`
+	prev=`ls -t -w1 $pattern | head -n2 | tail -n1 | cut -d'-' -f4,5 | cut -d'.' -f1`
 	version=`grep curr $file | cut -d':' -f2 | cut -d'-' -f1 | tr -d ' '`
 
+	echo $curr $prev $version
 	sed -e "s/curr:.*/curr: ${version}-$curr/" \
 	    -e "s/prev:.*/prev: ${version}-$prev/" $file > \
 	    ${SRC}/grass$1/${p}/osgeo4w/setup.hint
@@ -119,7 +120,6 @@ rsync_grass 77 -daily
 # promote changes
 ~/cronjobs/osgeo4w-promote.sh
 
-### report 64
 # report 74
 report 76
 report 77
