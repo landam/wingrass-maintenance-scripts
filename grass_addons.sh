@@ -65,9 +65,10 @@ if test -z $2 ; then
     # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass744        ${ADDON_PATH}/grass744/${PLATFORM_DIR}/addons    
     # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass760        ${ADDON_PATH}/grass760/${PLATFORM_DIR}/addons
     # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass761        ${ADDON_PATH}/grass761/${PLATFORM_DIR}/addons    
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass74  ${ADDON_PATH}/grass74/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass76  ${ADDON_PATH}/grass76/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass77  ${ADDON_PATH}/grass77/${PLATFORM_DIR}/addons
+    # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass74  ${ADDON_PATH}/grass74/${PLATFORM_DIR}/addons
+    # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass76  ${ADDON_PATH}/grass76/${PLATFORM_DIR}/addons
+    # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass78  ${ADDON_PATH}/grass78/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass79  ${ADDON_PATH}/grass79/${PLATFORM_DIR}/addons
 else
     compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass$2  ${ADDON_PATH}/grass$2/${PLATFORM_DIR}/addons
 fi
