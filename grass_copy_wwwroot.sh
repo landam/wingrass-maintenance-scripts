@@ -78,12 +78,13 @@ if test -z $2 ; then
     # daily builds
     # copy        74       7.4.svn
     # copy        76       7.6.svn
-    # copy        78       7.8.svn
+    copy        78       7.8.svn
     copy        79       7.9.dev
     # releases
     # copy_addon 744       7.4.4    
     # copy_addon 760       7.6.0
     # copy_addon 761       7.6.1
+    copy_addon 780       7.8.0
 else
     copy        $2       $3
 fi

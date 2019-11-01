@@ -6,7 +6,7 @@
 #  - src postfix, eg. '_trunk'
 #  - pkg postfix, eg. '-daily'
 
-SRC_DIR=usr/src
+SRC_DIR=/usr/src
 PACKAGEDIR=mswindows/osgeo4w/package
 
 if test -z "$1"; then
@@ -14,7 +14,7 @@ if test -z "$1"; then
     exit 1
 fi
 PLATFORM=$1
-PATH=/c/msys${PLATFORM}/usr/bin:/c/msys${PLATFORM}/mingw${PLATFORM}/bin:/c/osgeo4w${PLATFORM}/bin:${PATH}
+PATH=/usr/bin:/mingw${PLATFORM}/bin:/c/osgeo4w${PLATFORM}/bin:${PATH}
 if [ "$PLATFORM" == "64" ] ; then
     export PATH=${PATH}:/c/windows/syswow64
 else
@@ -31,7 +31,7 @@ function compile {
     GRASS_DIR=$1
     PACKAGE_POSTFIX=$2
 
-    cd /c/msys${PLATFORM}/$SRC_DIR/$GRASS_DIR
+    cd $SRC_DIR/$GRASS_DIR
     git pull
 
     rm -f d*.o # remove obj dumps
@@ -52,9 +52,8 @@ function compile {
 
 if test -z $2 ; then
     # dev packages
-#    compile grass74 -daily
 #    compile grass76 -daily
-#    compile grass78 -daily
+    compile grass78 -daily
     compile grass79 -daily
 else
     compile grass$2 $3 
