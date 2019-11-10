@@ -33,7 +33,7 @@ if test -z $2 ; then
     # dev packages
     # create_md5sum grass74
     # create_md5sum grass76
-    # create_md5sum grass78
+    create_md5sum grass78
     create_md5sum grass79
 else
     create_md5sum grass$2

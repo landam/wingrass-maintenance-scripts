@@ -78,7 +78,7 @@ if test -z $2 ; then
     # daily builds
     # copy        74       7.4.svn
     # copy        76       7.6.svn
-    copy        78       7.8.svn
+    copy        78       7.8.dev
     copy        79       7.9.dev
     # releases
     # copy_addon 744       7.4.4    

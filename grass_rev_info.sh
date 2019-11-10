@@ -80,7 +80,7 @@ if test -z $2 ; then
     # dev packages
     # update 74
     # update 76
-    # update 78
+    update 78
     update 79
 else
     update $2

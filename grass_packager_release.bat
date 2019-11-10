@@ -8,59 +8,59 @@ cd C:\Users\landa\grass_packager
 
 set MAJOR=7
 set MINOR=8
-set PATCH=0
-set REV=2
+set PATCH=1RC2
+set REV=1
 
 set GVERSION=%MAJOR%%MINOR%%PATCH%
 
 REM
 echo Clean-up...
 REM
-REM call :cleanUp 32
+call :cleanUp 32
 call :cleanUp 64
 
 REM
 echo Compiling GRASS GIS...
 REM
-REM C:\msys32\usr\bin\bash.exe .\grass_compile.sh 32 %GVERSION%
+C:\msys32\usr\bin\bash.exe .\grass_compile.sh 32 %GVERSION%
 C:\msys64\usr\bin\bash.exe .\grass_compile.sh 64 %GVERSION%
 
 REM
 echo Clean-up for packaging...
 REM
-REM call:cleanUpPkg x86    32
+call:cleanUpPkg x86    32
 call:cleanUpPkg x86_64 64
 
 REM
 echo Preparing packages...
 REM
-REM call:preparePkg x86    32
+call:preparePkg x86    32
 call:preparePkg x86_64 64
 
 REM
 echo Finding latest package and update info...
 REM
-REM C:\msys32\usr\bin\bash.exe .\grass_osgeo4w.sh  32 %GVERSION% %MAJOR%.%MINOR%.%PATCH% %REV%
+C:\msys32\usr\bin\bash.exe .\grass_osgeo4w.sh  32 %GVERSION% %MAJOR%.%MINOR%.%PATCH% %REV%
 C:\msys64\usr\bin\bash.exe .\grass_osgeo4w.sh  64 %GVERSION% %MAJOR%.%MINOR%.%PATCH% %REV%
-REM C:\msys32\usr\bin\bash.exe .\grass_svn_info.sh 32 %GVERSION% %REV%
-C:\msys64\usr\bin\bash.exe .\grass_svn_info.sh 64 %GVERSION% %REV%
+C:\msys32\usr\bin\bash.exe .\grass_rev_info.sh 32 %GVERSION% %REV%
+C:\msys64\usr\bin\bash.exe .\grass_rev_info.sh 64 %GVERSION% %REV%
 
 REM
 echo Creating standalone installer...
 REM
-REM call:createPkg x86
+call:createPkg x86
 call:createPkg x86_64
 
 REM
 REM Create md5sum files
 REM
-REM C:\msys32\usr\bin\bash.exe .\grass_md5sum.sh 32 %GVERSION%
+C:\msys32\usr\bin\bash.exe .\grass_md5sum.sh 32 %GVERSION%
 C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh 64 %GVERSION%
 
 REM
 echo Building addons...
 REM
-REM C:\msys32\usr\bin\bash.exe .\grass_addons.sh 32
+C:\msys32\usr\bin\bash.exe .\grass_addons.sh 32
 C:\msys64\usr\bin\bash.exe .\grass_addons.sh 64 %GVERSION%
 
 exit /b %ERRORLEVEL%

@@ -12,7 +12,7 @@ REM
 echo Compiling GRASS GIS...
 REM
 REM C:\msys32\usr\bin\bash.exe .\grass_compile.sh 32 76 -daily
-C:\msys64\usr\bin\bash.exe .\grass_compile.sh 64 78
+C:\msys64\usr\bin\bash.exe .\grass_compile.sh 64 79
 
 pause
 
