@@ -8,7 +8,7 @@ cd C:\Users\landa\grass_packager
 
 set MAJOR=7
 set MINOR=8
-set PATCH=1
+set PATCH=2
 set REV=1
 
 set GVERSION=%MAJOR%%MINOR%%PATCH%
@@ -60,7 +60,7 @@ C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh 64 %GVERSION%
 REM
 echo Building addons...
 REM
-C:\msys32\usr\bin\bash.exe .\grass_addons.sh 32
+C:\msys32\usr\bin\bash.exe .\grass_addons.sh 32 %GVERSION%
 C:\msys64\usr\bin\bash.exe .\grass_addons.sh 64 %GVERSION%
 
 exit /b %ERRORLEVEL%
