@@ -11,6 +11,7 @@ if test -z "$1"; then
 fi
 PLATFORM=$1
 # export PATH=/c/osgeo4w${PLATFORM}/bin:/c/msys${PLATFORM}/usr/bin:/c/msys${PLATFORM}/mingw${PLATFORM}/bin:${PATH}
+export PATH=/c/msys${PLATFORM}/usr/bin:${PATH}
 # export PYTHONPATH=
 export LANGUAGE=C
 export OSGEO4W_ROOT_MSYS="/c/OSGeo4W${PLATFORM}"
