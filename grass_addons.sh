@@ -98,7 +98,7 @@ if test -z $2 ; then
     compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass781    ${ADDON_PATH}/grass781/${PLATFORM_DIR}/addons
     compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass782    ${ADDON_PATH}/grass782/${PLATFORM_DIR}/addons
     compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass783    ${ADDON_PATH}/grass783/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass784RC1    ${ADDON_PATH}/grass784RC1/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass784    ${ADDON_PATH}/grass784/${PLATFORM_DIR}/addons
     # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass76  ${ADDON_PATH}/grass76/${PLATFORM_DIR}/addons
     compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass78     ${ADDON_PATH}/grass78/${PLATFORM_DIR}/addons
     compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass79     ${ADDON_PATH}/grass79/${PLATFORM_DIR}/addons
