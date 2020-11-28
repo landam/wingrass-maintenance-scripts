@@ -56,7 +56,7 @@ addons_index() {
 	if [ "$1" = "70" ] || [ "$1" = "72" ] || [ "$1" = "74" ] || [ "$1" = "76" ] ; then
         # create symlink to latest version
             cd ${SRC}/grass$1/${p}/addons
-	    rm latest
+	    rm -f latest
 
 	    # remove RC builds when release is available
 	    for rc in `ls -d grass-*RC[0-9] 2>/dev/null`; do
@@ -120,7 +120,7 @@ update_setup 79
 rsync_grass 79 -daily
 
 # promote changes
-~/cronjobs/osgeo4w-promote.sh
+~/wingrass-maintenance-scripts/osgeo4w-promote.sh
 
 # report 74
 report 76
