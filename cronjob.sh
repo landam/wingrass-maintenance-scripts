@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 WWW=/var/www
 SRC=/var/www/wingrass
@@ -104,24 +104,27 @@ download_unzip
 # addons_index 72
 # addons_index 74
 addons_index 76
-addons_index 77
+addons_index 78
+addons_index 79
 
 # remove old packages (daily builds only)
 rm_7 76
-rm_7 77
+rm_7 78
+rm_7 79
 
 # update setup.ini
-update_setup 77
+update_setup 79
 
 
 # geo101 -> upload.osgeo.org
-rsync_grass 77 -daily
+rsync_grass 79 -daily
 
 # promote changes
 ~/cronjobs/osgeo4w-promote.sh
 
 # report 74
 report 76
-report 77
+report 78
+report 79
 
 exit 0
