@@ -8,7 +8,7 @@ cd C:\Users\landa\grass_packager
 
 set MAJOR=7
 set MINOR=8
-set PATCH=4
+set PATCH=5RC1
 set REV=1
 
 set GVERSION=%MAJOR%%MINOR%%PATCH%
@@ -18,6 +18,12 @@ echo Clean-up...
 REM
 call :cleanUp 32
 call :cleanUp 64
+
+REM
+echo Cloning release...
+REM
+C:\msys32\usr\bin\bash.exe .\msys_clone_release.sh 32 %MAJOR%.%MINOR%.%PATCH%
+C:\msys64\usr\bin\bash.exe .\msys_clone_release.sh 64 %MAJOR%.%MINOR%.%PATCH%
 
 REM
 echo Compiling GRASS GIS...
