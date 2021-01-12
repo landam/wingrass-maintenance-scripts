@@ -1,4 +1,4 @@
-#!/bin/sh -xe
+#!/bin/sh -e
 
 PLATFORM=$1
 PATH=/usr/bin:/mingw${PLATFORM}/bin:/c/osgeo4w${PLATFORM}/bin:${PATH}
