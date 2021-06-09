@@ -79,7 +79,7 @@ if test -z $2 ; then
     # copy        74       7.4.svn
     # copy        76       7.6.svn
     copy        78       7.8.dev
-    copy        79       7.9.dev
+    copy        80       8.0.dev
     # releases
     # copy_addon 744       7.4.4    
     # copy_addon 760       7.6.0
