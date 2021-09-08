@@ -16,16 +16,17 @@ export PATH=/c/msys${PLATFORM}/usr/bin:${PATH}
 export LANGUAGE=C
 export OSGEO4W_ROOT_MSYS="/c/OSGeo4W${PLATFORM}"
 
-SRC_PATH=/c/msys${PLATFORM}/usr/src/grass-addons
+ADDON_PATH=/c/msys${PLATFORM}/usr/src/grass-addons
+SRC_PATH=${ADDON_PATH}/src
 GISBASE_PATH=/c/msys${PLATFORM}/usr/src
-ADDON_PATH=/c/Users/landa/grass_packager
+TARGET_PATH=/c/Users/landa/grass_packager
 if [ "$PLATFORM" = "32" ] ; then
     PLATFORM_DIR=x86
 else
     PLATFORM_DIR=x86_64
 fi
 
-cd $SRC_PATH
+cd $ADDON_PATH
 git pull
 
 fetchenv() {
@@ -65,7 +66,7 @@ function compile {
     # export PATH=${PYTHONHOME}:${PYTHONHOME}/Scripts:${PATH}
 
     rm -rf $DST_DIR
-    $SRC_PATH/tools/addons/compile.sh $SRC_ADDONS $SRC_GRASS $DST_DIR 1
+    $ADDON_PATH/tools/addons/compile.sh $SRC_ADDONS $SRC_GRASS $DST_DIR 1
     cd $DST_DIR
     for d in `ls -d */`; do
 	mod=${d%%/}
@@ -92,19 +93,19 @@ function compile {
 }
 
 if test -z $2 ; then
-    # compile ${SVN_PATH}/grass6 ${GISBASE_PATH}/grass644        ${ADDON_PATH}/grass644/addons
-    # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass761        ${ADDON_PATH}/grass761/${PLATFORM_DIR}/addons    
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass780    ${ADDON_PATH}/grass780/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass781    ${ADDON_PATH}/grass781/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass782    ${ADDON_PATH}/grass782/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass783    ${ADDON_PATH}/grass783/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass784    ${ADDON_PATH}/grass784/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass785    ${ADDON_PATH}/grass785/${PLATFORM_DIR}/addons
-    # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass76  ${ADDON_PATH}/grass76/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass78     ${ADDON_PATH}/grass78/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass80     ${ADDON_PATH}/grass80/${PLATFORM_DIR}/addons
+    # compile ${SVN_PATH}/grass6 ${GISBASE_PATH}/grass644        ${TARGET_PATH}/grass644/addons
+    # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass761        ${TARGET_PATH}/grass761/${PLATFORM_DIR}/addons    
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass780    ${TARGET_PATH}/grass780/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass781    ${TARGET_PATH}/grass781/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass782    ${TARGET_PATH}/grass782/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass783    ${TARGET_PATH}/grass783/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass784    ${TARGET_PATH}/grass784/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass785    ${TARGET_PATH}/grass785/${PLATFORM_DIR}/addons
+    # compile ${SRC_PATH} ${GISBASE_PATH}/grass76  ${TARGET_PATH}/grass76/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass78     ${TARGET_PATH}/grass78/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/${PLATFORM_DIR}/addons
 else
-    compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass$2  ${ADDON_PATH}/grass$2/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass$2  ${TARGET_PATH}/grass$2/${PLATFORM_DIR}/addons
 fi
 
 exit 0
