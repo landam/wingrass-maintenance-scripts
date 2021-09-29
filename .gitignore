@@ -3,3 +3,4 @@ grass[0-9][0-9][0-9]/
 grass[0-9][0-9][0-9]RC[0-9]/
 *~
 osgeo4w-setup.exe
+ccache/

@@ -8,28 +8,15 @@
 
 SRC=usr/src
 PACKAGEDIR=mswindows/osgeo4w/package
-HOME=/c/Users/landa/grass_packager
 
-if test -z "$1"; then
-    echo "platform not specified"
-    exit 1
-fi
-PLATFORM=$1
-
-export PATH=/c/msys${PLATFORM}/usr/bin:/c/msys${PLATFORM}/mingw${PLATFORM}/bin:/c/osgeo4w${PLATFORM}/bin:${PATH}
-
-if [ "$PLATFORM" = "32" ] ; then
-    PLATFORM_DIR=x86
-else
-    PLATFORM_DIR=x86_64
-fi
+export PATH=/c/msys64/usr/bin:/c/msys64/mingw64/bin:/c/osgeo4w/bin:${PATH}
 
 function update {
     GRASS_DIR=grass${1}
     PATCH_NUM=$2
 
-    SRC_PATH=/c/msys${PLATFORM}/$SRC/${GRASS_DIR}
-    DEST_PATH=${HOME}/${GRASS_DIR}/${PLATFORM_DIR}
+    SRC_PATH=/c/msys64/$SRC/${GRASS_DIR}
+    DEST_PATH=${HOME}/${GRASS_DIR}
     
     cd $SRC_PATH
 
@@ -49,7 +36,7 @@ function update {
     read PATCH <&3 
     VERSION=$MAJOR.$MINOR.$PATCH
     
-    if [[ "$PATCH" == *svn* ]] ; then
+    if [[ "$PATCH" == *dev* ]] ; then
 	TYPE="Devel"
     else
 	TYPE="Release"
@@ -68,7 +55,7 @@ function create_log {
     REV=$2
     PATCH=$3
     
-    cd ${HOME}/grass${VERSION}/${PLATFORM_DIR}
+    cd ${HOME}/grass${VERSION}
     LOG_DIR=log-r$2-$3
     
     mkdir -p $LOG_DIR
@@ -78,12 +65,10 @@ function create_log {
 
 if test -z $2 ; then
     # dev packages
-    # update 74
-    # update 76
     update 78
-    update 80
+    # update 80
 else
-    update $2
+    update $1
 fi
 
 exit 0

@@ -5,25 +5,12 @@
 #  - platform (32 or 64)
 #  - src postfix, eg. '70'
 
-HOME=/c/Users/landa/grass_packager
-
-if test -z "$1"; then
-    echo "platform not specified"
-    exit 1
-fi
-PLATFORM=$1
-export PATH=/c/msys${PLATFORM}/usr/bin:/c/msys${PLATFORM}/mingw${PLATFORM}/bin:/c/osgeo4w${PLATFORM}/bin:${PATH}
-
-if [ "$PLATFORM" = "32" ] ; then
-    PLATFORM_DIR=x86
-else
-    PLATFORM_DIR=x86_64
-fi
+export PATH=/c/msys64/usr/bin:/c/msys64/mingw64/bin:/c/osgeo4w/bin:${PATH}
 
 function create_md5sum {
     GRASS_DIR=$1
     
-    cd ${HOME}/${GRASS_DIR}/${PLATFORM_DIR}
+    cd ${HOME}/${GRASS_DIR}
     for file in `ls WinGRASS*.exe`; do
 	md5sum $file > ${file}.md5sum
     done
@@ -31,10 +18,8 @@ function create_md5sum {
 
 if test -z $2 ; then
     # dev packages
-    # create_md5sum grass74
-    # create_md5sum grass76
     create_md5sum grass78
-    create_md5sum grass80
+    # create_md5sum grass80
 else
     create_md5sum grass$2
 fi
