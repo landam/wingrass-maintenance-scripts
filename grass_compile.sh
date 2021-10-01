@@ -2,7 +2,6 @@
 # Compile GRASS versions (update source code from Git repository)
 #
 # Options:
-#  - platform (32 or 64)
 #  - src postfix, eg. '_trunk'
 #  - pkg postfix, eg. '-daily'
 

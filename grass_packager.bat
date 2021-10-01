@@ -6,45 +6,43 @@ cd %HOME%
 REM
 echo Clean-up...
 REM
-REM call :cleanUp
+call :cleanUp
 
 REM
 echo Compiling GRASS GIS...
 REM
-REM C:\msys64\usr\bin\bash.exe .\grass_compile.sh
+C:\msys64\usr\bin\bash.exe .\grass_compile.sh
 
 REM
 echo Clean-up for packaging...
 REM
-REM call:cleanUpPkg
+call:cleanUpPkg
 
 REM
 echo Preparing packages...
 REM
-REM call:preparePkg
+call:preparePkg
 
 REM
 echo Finding latest package and update info...
 REM
-REM C:\msys64\usr\bin\bash.exe .\grass_osgeo4w.sh
-REM C:\msys64\usr\bin\bash.exe .\grass_rev_info.sh
+C:\msys64\usr\bin\bash.exe .\grass_osgeo4w.sh
+C:\msys64\usr\bin\bash.exe .\grass_rev_info.sh
 
 REM
 echo Creating standalone installer...
 REM
-REM call:createPkg
+call:createPkg
 
 REM
 REM Create md5sum files
 REM
-REM C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh
+C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh
 
 REM
 echo Building addons...
 REM
 C:\msys64\usr\bin\bash.exe .\grass_addons.sh
-
-pause
 
 REM
 echo Publishing packages...
