@@ -4,11 +4,12 @@ REM
 REM TODO: merge with grass_packager.bat
 REM
 
-cd C:\Users\landa\grass_packager
+set HOME=C:\Users\landamar\grass_packager
+cd %HOME%
 
 set MAJOR=7
 set MINOR=8
-set PATCH=6.dev
+set PATCH=6RC3
 set REV=1
 
 set GVERSION=%MAJOR%%MINOR%%PATCH%
@@ -16,7 +17,7 @@ set GVERSION=%MAJOR%%MINOR%%PATCH%
 REM
 echo Clean-up...
 REM
-call :cleanUp
+REM call :cleanUp
 
 REM
 echo Cloning release...
@@ -31,30 +32,28 @@ REM C:\msys64\usr\bin\bash.exe .\grass_compile.sh %GVERSION%
 REM
 echo Clean-up for packaging...
 REM
-call:cleanUpPkg
+REM call:cleanUpPkg
 
 REM
 echo Preparing packages...
 REM
-call:preparePkg
-
-pause
+REM call:preparePkg
 
 REM
 echo Finding latest package and update info...
 REM
-C:\msys64\usr\bin\bash.exe .\grass_osgeo4w.sh  %GVERSION% %MAJOR%.%MINOR%.%PATCH% %REV%
-C:\msys64\usr\bin\bash.exe .\grass_rev_info.sh %GVERSION% %REV%
+REM C:\msys64\usr\bin\bash.exe .\grass_osgeo4w.sh  %GVERSION% %MAJOR%.%MINOR%.%PATCH% %REV%
+REM C:\msys64\usr\bin\bash.exe .\grass_rev_info.sh %GVERSION% %REV%
 
 REM
 echo Creating standalone installer...
 REM
-call:createPkg
+REM call:createPkg
 
 REM
 REM Create md5sum files
 REM
-C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh %GVERSION%
+REM C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh %GVERSION%
 
 REM
 echo Building addons...
@@ -62,8 +61,6 @@ REM
 C:\msys64\usr\bin\bash.exe .\grass_addons.sh %GVERSION%
 
 exit /b %ERRORLEVEL%
-
-pause
 
 :cleanUp
         if exist "C:\OSGeo4W\apps\grass\grass-%MAJOR%.%MINOR%.%PATCH%" rmdir /S/Q "C:\OSGeo4W%~1\apps\grass\grass-%MAJOR%.%MINOR%.%PATCH%"
@@ -76,8 +73,8 @@ exit /b 0
 
 :preparePkg
 	cd .\grass%GVERSION%
-	call .\GRASS-Packager.bat 64 > .\GRASS-Packager.log
-	cd ..\..
+	call .\GRASS-Packager.bat > .\GRASS-Packager.log
+	cd ..
 exit /b 0
 
 :createPkg

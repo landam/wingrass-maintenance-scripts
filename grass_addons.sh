@@ -13,7 +13,7 @@ export OSGEO4W_ROOT_MSYS="/c/OSGeo4W"
 ADDON_PATH=/c/msys64/usr/src/grass7-addons
 SRC_PATH=${ADDON_PATH}/src
 GISBASE_PATH=/c/msys64/usr/src
-TARGET_PATH=$HOME/grass_packager
+TARGET_PATH=$HOME
 
 cd $ADDON_PATH
 git pull
@@ -71,12 +71,12 @@ function compile {
     done
 }
 
-if test -z $2 ; then
+if test -z $1 ; then
     # compile ${SRC_PATH} ${GISBASE_PATH}/grass786RC2 ${TARGET_PATH}/grass786RC2/${PLATFORM_DIR}/addons
     compile ${SRC_PATH} ${GISBASE_PATH}/grass78     ${TARGET_PATH}/grass78/addons
-    # compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/addons
 else
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass$2  ${TARGET_PATH}/grass$2/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass$1  ${TARGET_PATH}/grass$1/addons
 fi
 
 exit 0

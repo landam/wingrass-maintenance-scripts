@@ -2,7 +2,6 @@
 # Update Git version info
 #
 # Options:
-#  - platform (32 or 64)
 #  - src postfix, eg. '_trunk'
 #  - pkg patch number
 
@@ -63,12 +62,12 @@ function create_log {
     cp error.log $LOG_DIR/
 }
 
-if test -z $2 ; then
+if test -z $1 ; then
     # dev packages
     update 78
-    # update 80
+    update 80
 else
-    update $1
+    update $1 $2
 fi
 
 exit 0

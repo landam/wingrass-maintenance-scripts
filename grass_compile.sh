@@ -42,12 +42,12 @@ function compile {
     ./mswindows/osgeo4w/package.sh
 }
 
-if test -z $2 ; then
+if test -z $1 ; then
     # dev packages
     compile grass78 -daily
-#    compile grass80 -daily
+    compile grass80 -daily
 else
-    compile grass$2 $3 
+    compile grass$1 
 fi
 
 exit 0
