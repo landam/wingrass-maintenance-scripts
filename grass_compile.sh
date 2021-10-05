@@ -54,7 +54,7 @@ if test -z $2 ; then
     # dev packages
 #    compile grass76 -daily
     compile grass78 -daily
-    compile grass80 -daily
+#    compile grass80 -daily
 else
     compile grass$2 $3 
 fi

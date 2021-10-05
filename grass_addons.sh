@@ -105,7 +105,7 @@ if test -z $2 ; then
     compile ${SRC_PATH} ${GISBASE_PATH}/grass786RC2 ${TARGET_PATH}/grass786RC2/${PLATFORM_DIR}/addons
     # compile ${SRC_PATH} ${GISBASE_PATH}/grass76  ${TARGET_PATH}/grass76/${PLATFORM_DIR}/addons
     compile ${SRC_PATH} ${GISBASE_PATH}/grass78     ${TARGET_PATH}/grass78/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/${PLATFORM_DIR}/addons
+#    compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/${PLATFORM_DIR}/addons
 else
     compile ${SRC_PATH} ${GISBASE_PATH}/grass$2  ${TARGET_PATH}/grass$2/${PLATFORM_DIR}/addons
 fi
