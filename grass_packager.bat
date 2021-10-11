@@ -6,12 +6,12 @@ cd %HOME%
 REM
 echo Clean-up...
 REM
-REM call :cleanUp
+call :cleanUp
 
 REM
 echo Compiling GRASS GIS...
 REM
-REM C:\msys64\usr\bin\bash.exe .\grass_compile.sh
+C:\msys64\usr\bin\bash.exe .\grass_compile.sh
 
 REM
 echo Clean-up for packaging...
@@ -42,12 +42,12 @@ C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh
 REM
 echo Building addons...
 REM
-REM C:\msys64\usr\bin\bash.exe .\grass_addons.sh
+C:\msys64\usr\bin\bash.exe .\grass_addons.sh
 
 REM
 echo Publishing packages...
 REM
-REM C:\msys64\usr\bin\bash.exe .\grass_copy_wwwroot.sh 64
+C:\msys64\usr\bin\bash.exe .\grass_copy_scp.sh
 
 exit /b %ERRORLEVEL%
 
