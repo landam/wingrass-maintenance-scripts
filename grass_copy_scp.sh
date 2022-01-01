@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export PATH=/c/msys64/usr/bin:${PATH}
+
 function copy {
     SOURCE_DIR=${HOME}/grass$1
     TARGET_DIR=/var/www/wingrass/grass$1/x86_64
@@ -20,19 +22,20 @@ function copy_release {
     SOURCE_DIR=${HOME}/grass$GVERSION
     # scp $SOURCE_DIR/WinGRASS-* $HOST:
     # scp $SOURCE_DIR/grass-*.tar.bz2 $HOST:/osgeo/download/osgeo4w/v2/x86_64/release/grass/
-
+    # ssh $HOST ./copy_binaries.sh
+    
     # addons
     HOST=landamar@wingrass
     VERSION=${GVERSION:0:1}${GVERSION:1:1}
     FVERSION=${GVERSION:0:1}.${GVERSION:1:1}.${GVERSION:2:2}
     TARGET_DIR=/var/www/wingrass/grass$VERSION/x86_64
-    ssh $HOST mkdir $TARGET_DIR/addons/grass-$FVERSION
-    scp -r $SOURCE_DIR/addons/* $HOST:$TARGET_DIR/addons/grass-$FVERSION/
+    # ssh $HOST mkdir $TARGET_DIR/addons/grass-$FVERSION
+    # scp -r $SOURCE_DIR/addons/* $HOST:$TARGET_DIR/addons/grass-$FVERSION/
     # TBD: only for final release
     # remove rc
-    ssh $HOST rm -rf $TARGET_DIR/addons/grass-${FVERSION}RC*
+    # ssh $HOST rm -rf $TARGET_DIR/addons/grass-${FVERSION}RC*
     # update latest
-    ssh $HOST ln -sf $TARGET_DIR/addons/grass-${FVERSION} $TARGET_DIR/addons/latest
+    # ssh $HOST ln -sf $TARGET_DIR/addons/grass-${FVERSION} $TARGET_DIR/addons/latest
 }
 
 if test -z $1 ; then
