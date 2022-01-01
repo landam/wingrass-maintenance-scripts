@@ -1,18 +1,12 @@
 #!/bin/sh -e
 
-PLATFORM=$1
-PATH=/usr/bin:/mingw${PLATFORM}/bin:/c/osgeo4w${PLATFORM}/bin:${PATH}
-if [ "$PLATFORM" == "64" ] ; then
-    export PATH=${PATH}:/c/windows/syswow64
-else
-    export PATH=${PATH}:/c/windows/system32
-fi
+PATH=/usr/bin:/mingw64/bin:/c/osgeo4w/bin:/c/windows/syswow64:${PATH}
 
-if test -z $2; then
+if test -z $1; then
     echo "specify release, eg. 7.8.5RC1"
     exit 1
 fi
-release=$2
+release=$1
 release_dir=`echo $release | sed 's/\.//g'`
 cd /usr/src
 (cd grass78; git pull)

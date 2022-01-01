@@ -2,29 +2,18 @@
 # Compile GRASS GIS Addons
 #
 # Options:
-#  - platform (32 or 64)
 #  - src postfix, eg. '_trunk'
 
-if test -z "$1"; then
-    echo "platform not specified"
-    exit 1
-fi
-PLATFORM=$1
 # export PATH=/c/osgeo4w${PLATFORM}/bin:/c/msys${PLATFORM}/usr/bin:/c/msys${PLATFORM}/mingw${PLATFORM}/bin:${PATH}
-export PATH=/c/msys${PLATFORM}/usr/bin:${PATH}
+export PATH=/c/msys64/usr/bin:${PATH}
 # export PYTHONPATH=
 export LANGUAGE=C
-export OSGEO4W_ROOT_MSYS="/c/OSGeo4W${PLATFORM}"
+export OSGEO4W_ROOT_MSYS="/c/OSGeo4W"
 
-ADDON_PATH=/c/msys${PLATFORM}/usr/src/grass-addons
+ADDON_PATH=/c/msys64/usr/src/grass7-addons
 SRC_PATH=${ADDON_PATH}/src
-GISBASE_PATH=/c/msys${PLATFORM}/usr/src
-TARGET_PATH=/c/Users/landa/grass_packager
-if [ "$PLATFORM" = "32" ] ; then
-    PLATFORM_DIR=x86
-else
-    PLATFORM_DIR=x86_64
-fi
+GISBASE_PATH=/c/msys64/usr/src
+TARGET_PATH=$HOME
 
 cd $ADDON_PATH
 git pull
@@ -42,7 +31,7 @@ fetchenv() {
     cmd.exe //c "call `cygpath -w $batch` $args \>nul 2\>nul \& set" >$dstenv
     diff -u $srcenv $dstenv | sed -f ${SRC_GRASS}/mswindows/osgeo4w/envdiff.sed >$diffenv
     . $diffenv
-    PATH=$PATH:/usr/bin:/mingw${MINGW_POSTFIX}/bin/:$PWD/mswindows/osgeo4w/lib:$PWD/mswindows/osgeo4w:/c/windows32/system32:/c/windows:/c/windows32/system32:/c/windows
+    PATH=$PATH:/usr/bin:/mingw64/bin/:$PWD/mswindows/osgeo4w/lib:$PWD/mswindows/osgeo4w:/c/windows32/system32:/c/windows:/c/windows32/system32:/c/windows
     rm -f $srcenv $dstenv $diffenv
 }
 
@@ -52,21 +41,11 @@ function compile {
     DST_DIR=$3
 
     fetchenv $OSGEO4W_ROOT_MSYS/bin/o4w_env.bat
-    export PATH=${PATH}:/c/msys${PLATFORM}/usr/bin:/c/msys${PLATFORM}/mingw${PLATFORM}/bin
+    export PATH=${PATH}:/c/msys64/usr/bin:/c/msys64/mingw64/bin
     grass_version=`echo $SRC_GRASS | cut -d '/' -f6 | sed 's/grass//g'`
-    if [ ${grass_version:1:1} -ge 8 ]; then
-	# alias python=python3
-	# py_ver=37
-	fetchenv $OSGEO4W_ROOT_MSYS/bin/py3_env.bat
-    # else
-    # 	py_ver=27
-    fi
-
-    # export PYTHONHOME=/c/OSGeo4W${PLATFORM}/apps/Python${py_ver}
-    # export PATH=${PYTHONHOME}:${PYTHONHOME}/Scripts:${PATH}
 
     rm -rf $DST_DIR
-    $ADDON_PATH/tools/addons/compile.sh $SRC_ADDONS $SRC_GRASS $DST_DIR 1
+    $ADDON_PATH/utils/addons/compile.sh $SRC_ADDONS $SRC_GRASS $DST_DIR 1
     cd $DST_DIR
     for d in `ls -d */`; do
 	mod=${d%%/}
@@ -92,21 +71,12 @@ function compile {
     done
 }
 
-if test -z $2 ; then
-    # compile ${SVN_PATH}/grass6 ${GISBASE_PATH}/grass644        ${TARGET_PATH}/grass644/addons
-    # compile ${SRC_PATH}/grass7 ${GISBASE_PATH}/grass761        ${TARGET_PATH}/grass761/${PLATFORM_DIR}/addons    
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass780    ${TARGET_PATH}/grass780/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass781    ${TARGET_PATH}/grass781/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass782    ${TARGET_PATH}/grass782/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass783    ${TARGET_PATH}/grass783/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass784    ${TARGET_PATH}/grass784/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass785    ${TARGET_PATH}/grass785/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass786RC2 ${TARGET_PATH}/grass786RC2/${PLATFORM_DIR}/addons
-    # compile ${SRC_PATH} ${GISBASE_PATH}/grass76  ${TARGET_PATH}/grass76/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass78     ${TARGET_PATH}/grass78/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/${PLATFORM_DIR}/addons
+if test -z $1 ; then
+    # compile ${SRC_PATH} ${GISBASE_PATH}/grass786RC2 ${TARGET_PATH}/grass786RC2/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass78     ${TARGET_PATH}/grass78/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/addons
 else
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass$2  ${TARGET_PATH}/grass$2/${PLATFORM_DIR}/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass$1  ${TARGET_PATH}/grass$1/addons
 fi
 
 exit 0

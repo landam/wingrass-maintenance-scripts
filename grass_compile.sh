@@ -2,24 +2,13 @@
 # Compile GRASS versions (update source code from Git repository)
 #
 # Options:
-#  - platform (32 or 64)
 #  - src postfix, eg. '_trunk'
 #  - pkg postfix, eg. '-daily'
 
 SRC_DIR=/usr/src
 PACKAGEDIR=mswindows/osgeo4w/package
 
-if test -z "$1"; then
-    echo "platform not specified"
-    exit 1
-fi
-PLATFORM=$1
-PATH=/usr/bin:/mingw${PLATFORM}/bin:/c/osgeo4w${PLATFORM}/bin:${PATH}
-if [ "$PLATFORM" == "64" ] ; then
-    export PATH=${PATH}:/c/windows/syswow64
-else
-    export PATH=${PATH}:/c/windows/system32
-fi
+PATH=/usr/bin:/mingw64/bin:/c/osgeo4w/bin:/c/windows/syswow64:${PATH}
 
 function rm_package_7 {
     for f in `find $PACKAGEDIR/grass*.tar.bz2 -mtime +7 2>/dev/null`; do
@@ -45,18 +34,20 @@ function compile {
     rev=`git rev-parse --short HEAD`
     package="$rev-$num"
     
-    echo "Compiling ${PLATFORM}bit $GRASS_DIR ($package)..."
+    echo "Compiling $GRASS_DIR ($package)..."
     rm -f mswindows/osgeo4w/configure-stamp
-    PACKAGE_PATCH=$package PACKAGE_POSTFIX=$PACKAGE_POSTFIX OSGEO4W_POSTFIX=$PLATFORM ./mswindows/osgeo4w/package.sh
+    PACKAGE_PATCH=$package PACKAGE_POSTFIX=$PACKAGE_POSTFIX \
+    OSGEO4W_ROOT_MSYS=/c/osgeo4w \
+    VCPATH="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx86\x64" \
+    ./mswindows/osgeo4w/package.sh
 }
 
-if test -z $2 ; then
+if test -z $1 ; then
     # dev packages
-#    compile grass76 -daily
     compile grass78 -daily
     compile grass80 -daily
 else
-    compile grass$2 $3 
+    compile grass$1 
 fi
 
 exit 0
