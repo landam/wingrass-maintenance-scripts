@@ -72,9 +72,10 @@ function compile {
 }
 
 if test -z $1 ; then
-    # compile ${SRC_PATH} ${GISBASE_PATH}/grass786RC2 ${TARGET_PATH}/grass786RC2/${PLATFORM_DIR}/addons
     compile ${SRC_PATH} ${GISBASE_PATH}/grass78     ${TARGET_PATH}/grass78/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass786    ${TARGET_PATH}/grass786/${PLATFORM_DIR}/addons
     compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/addons
+    compile ${SRC_PATH} ${GISBASE_PATH}/grass800RC1 ${TARGET_PATH}/grass800RC1/addons
 else
     compile ${SRC_PATH} ${GISBASE_PATH}/grass$1  ${TARGET_PATH}/grass$1/addons
 fi

@@ -60,6 +60,11 @@ echo Building addons...
 REM
 C:\msys64\usr\bin\bash.exe .\grass_addons.sh %GVERSION%
 
+REM
+echo Publishing packages...
+REM
+C:\msys64\usr\bin\bash.exe .\grass_copy_scp.sh %GVERSION%
+
 exit /b %ERRORLEVEL%
 
 :cleanUp
