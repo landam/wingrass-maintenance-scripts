@@ -66,6 +66,7 @@ if test -z $1 ; then
     # dev packages
     update 78
     update 80
+    update 81    
 else
     update $1 $2
 fi

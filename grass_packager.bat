@@ -60,6 +60,8 @@ exit /b 0
 	xcopy C:\msys64\usr\src\grass78\mswindows\*     .\grass78 /S/V/I > NUL
 	if exist .\grass80 rmdir /S/Q .\grass80
 	xcopy C:\msys64\usr\src\grass80\mswindows\*     .\grass80 /S/V/I > NUL
+	if exist .\grass81 rmdir /S/Q .\grass81
+	xcopy C:\msys64\usr\src\grass81\mswindows\*     .\grass81 /S/V/I > NUL
 exit /b 0
 
 :preparePkg
@@ -69,9 +71,13 @@ exit /b 0
 	cd .\grass80
 	call .\GRASS-Packager.bat > .\GRASS-Packager.log
 	cd ..
+	cd .\grass81
+	call .\GRASS-Packager.bat > .\GRASS-Packager.log
+	cd ..
 exit /b 0
 
 :createPkg
         C:\DevTools\makensis.exe .\grass78\GRASS-Installer.nsi > .\grass78\GRASS-Installer.log
         C:\DevTools\makensis.exe .\grass80\GRASS-Installer.nsi > .\grass80\GRASS-Installer.log
+        C:\DevTools\makensis.exe .\grass81\GRASS-Installer.nsi > .\grass81\GRASS-Installer.log
 exit /b 0

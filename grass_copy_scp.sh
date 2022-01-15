@@ -10,7 +10,8 @@ function copy {
     if [ ${#1} == 2 ] ; then
 	VERSION=${1:0:1}.${1:1:2}.dev      # daily
 	TARGET_DIR=/var/www/wingrass/grass$1/x86_64
-	scp $SOURCE_DIR/WinGRASS-* $HOST:$TARGET_DIR/
+	# scp $SOURCE_DIR/WinGRASS-* $HOST:$TARGET_DIR/
+	ssh $HOST mkdir -p $TARGET_DIR/osgeo4w/
 	scp $SOURCE_DIR/grass-*.tar.bz2 $HOST:$TARGET_DIR/osgeo4w/
 	scp -r $SOURCE_DIR/log-* $HOST:$TARGET_DIR/logs
     else 
@@ -49,6 +50,7 @@ if test -z $1 ; then
     copy 786
     copy 80
     copy 800RC1
+    copy 81    
 else
     copy_release $1
 fi
