@@ -45,7 +45,7 @@ function compile {
     grass_version=`echo $SRC_GRASS | cut -d '/' -f6 | sed 's/grass//g'`
 
     rm -rf $DST_DIR
-    $ADDON_PATH/utils/addons/compile.sh $SRC_ADDONS $SRC_GRASS $DST_DIR 1
+    $HOME/addons/compile.sh $SRC_ADDONS $SRC_GRASS $DST_DIR 1
     cd $DST_DIR
     for d in `ls -d */`; do
 	mod=${d%%/}
