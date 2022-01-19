@@ -36,10 +36,10 @@ fetchenv() {
 }
 
 function compile {
-    SRC_ADDONS=$1
-    SRC_GRASS=$2
-    DST_DIR=$3
-
+    SRC_ADDONS=${GISBASE_PATH}/grass${1:0:1}-addons/src
+    SRC_GRASS=${GISBASE_PATH}/grass$1
+    DST_DIR=${TARGET_PATH}/grass$1/addons
+    
     fetchenv $OSGEO4W_ROOT_MSYS/bin/o4w_env.bat
     export PATH=${PATH}:/c/msys64/usr/bin:/c/msys64/mingw64/bin
     grass_version=`echo $SRC_GRASS | cut -d '/' -f6 | sed 's/grass//g'`
@@ -72,11 +72,11 @@ function compile {
 }
 
 if test -z $1 ; then
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass78     ${TARGET_PATH}/grass78/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass786    ${TARGET_PATH}/grass786/${PLATFORM_DIR}/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass80     ${TARGET_PATH}/grass80/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass800RC2 ${TARGET_PATH}/grass800RC2/addons
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass81     ${TARGET_PATH}/grass81/addons    
+    compile 78
+    compile 786
+    compile 80
+    compile 800RC2
+    compile 81
 else
     compile ${SRC_PATH} ${GISBASE_PATH}/grass$1  ${TARGET_PATH}/grass$1/addons
 fi
