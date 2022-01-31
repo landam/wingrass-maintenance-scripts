@@ -75,7 +75,7 @@ if test -z $1 ; then
     compile 78
     compile 786
     compile 80
-    compile 800RC2
+    compile 800
     compile 81
 else
     compile ${SRC_PATH} ${GISBASE_PATH}/grass$1  ${TARGET_PATH}/grass$1/addons
