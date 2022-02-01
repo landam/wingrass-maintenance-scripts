@@ -10,13 +10,9 @@ export PATH=/c/msys64/usr/bin:${PATH}
 export LANGUAGE=C
 export OSGEO4W_ROOT_MSYS="/c/OSGeo4W"
 
-ADDON_PATH=/c/msys64/usr/src/grass7-addons
 SRC_PATH=${ADDON_PATH}/src
 GISBASE_PATH=/c/msys64/usr/src
 TARGET_PATH=$HOME
-
-cd $ADDON_PATH
-git pull
 
 fetchenv() {
     local IFS
@@ -39,7 +35,8 @@ function compile {
     SRC_ADDONS=${GISBASE_PATH}/grass${1:0:1}-addons/src
     SRC_GRASS=${GISBASE_PATH}/grass$1
     DST_DIR=${TARGET_PATH}/grass$1/addons
-    
+
+    (cd $SRC_ADDONS; git pull)
     fetchenv $OSGEO4W_ROOT_MSYS/bin/o4w_env.bat
     export PATH=${PATH}:/c/msys64/usr/bin:/c/msys64/mingw64/bin
     grass_version=`echo $SRC_GRASS | cut -d '/' -f6 | sed 's/grass//g'`
@@ -78,7 +75,7 @@ if test -z $1 ; then
     compile 800
     compile 81
 else
-    compile ${SRC_PATH} ${GISBASE_PATH}/grass$1  ${TARGET_PATH}/grass$1/addons
+    compile $1
 fi
 
 exit 0
