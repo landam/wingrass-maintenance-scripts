@@ -11,15 +11,14 @@ function copy {
     if [ ${1:0:1} != "8" ] ; then
 	PLATFORM="x86_64"
     fi
+    VERSION=`cat $HOME/grass$1/GRASS-$1-Package/etc/VERSIONNUMBER | cut -d' ' -f1`
     if [ ${#1} == 2 ] ; then
-	VERSION=${1:0:1}.${1:1:2}.dev      # daily
 	TARGET_DIR=/var/www/wingrass/grass$1/$PLATFORM
 	scp $SOURCE_DIR/WinGRASS-* $HOST:$TARGET_DIR/
 	ssh $HOST mkdir -p $TARGET_DIR/osgeo4w/
 	scp $SOURCE_DIR/grass-*.tar.bz2 $HOST:$TARGET_DIR/osgeo4w/
 	scp -r $SOURCE_DIR/log-* $HOST:$TARGET_DIR/logs
     else 
-	VERSION=${1:0:1}.${1:1:1}.${1:2:4} # release
 	TARGET_DIR=/var/www/wingrass/grass${1:0:1}${1:1:1}/$PLATFORM
     fi
     ssh $HOST mkdir -p $TARGET_DIR/addons/grass-$VERSION/
