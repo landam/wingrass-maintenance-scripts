@@ -10,6 +10,8 @@ PACKAGEDIR=mswindows/osgeo4w/package
 
 PATH=/usr/bin:/mingw64/bin:/c/osgeo4w/bin:/c/windows/syswow64:${PATH}
 
+LC_ALL=C
+
 function rm_package_7 {
     for f in `find $PACKAGEDIR/grass*.tar.bz2 -mtime +7 2>/dev/null`; do
         rm -rfv $f
