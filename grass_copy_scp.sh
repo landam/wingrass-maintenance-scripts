@@ -28,7 +28,7 @@ function copy {
 function copy_release {
     # release
     HOST=martinl@grass.osgeo.org
-    SOURCE_DIR=${HOME}/grass$GVERSION
+    SOURCE_DIR=${HOME}/grass$1
     GVERSION=${1:0:1}${1:1:1}
     VERSION=${1:0:1}.${1:1:1}.${1:2:4} # release
     PLATFORM=""
