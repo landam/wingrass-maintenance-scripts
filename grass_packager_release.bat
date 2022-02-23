@@ -7,9 +7,9 @@ REM
 set HOME=C:\Users\landamar\grass_packager
 cd %HOME%
 
-set MAJOR=8
-set MINOR=0
-set PATCH=1RC1
+set MAJOR=7
+set MINOR=8
+set PATCH=7
 set REV=1
 
 set GVERSION=%MAJOR%%MINOR%%PATCH%

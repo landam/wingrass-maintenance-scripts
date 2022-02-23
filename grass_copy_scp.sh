@@ -54,8 +54,10 @@ function copy_release {
 if test -z $1 ; then
     copy 78
     copy 786
+    copy 787    
     copy 80
     copy 800
+    copy 801RC1    
     copy 81    
 else
     copy_release $1
