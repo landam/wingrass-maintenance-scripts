@@ -106,18 +106,20 @@ download_unzip
 addons_index 76
 addons_index 78
 addons_index 80
+addons_index 82
 
 # remove old packages (daily builds only)
 rm_7 76
 rm_7 78
 rm_7 80
+rm_7 82
 
 # update setup.ini
-update_setup 80
+update_setup 82
 
 
 # geo101 -> upload.osgeo.org
-rsync_grass 80 -daily
+rsync_grass 82 -daily
 
 # promote changes
 ~/wingrass-maintenance-scripts/osgeo4w-promote.sh
@@ -126,5 +128,6 @@ rsync_grass 80 -daily
 report 76
 report 78
 report 80
+report 82
 
 exit 0
