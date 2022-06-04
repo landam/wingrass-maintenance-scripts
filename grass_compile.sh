@@ -48,7 +48,8 @@ if test -z $1 ; then
     # dev packages
     compile grass78 -daily
     compile grass80 -daily
-    compile grass81 -daily    
+    compile grass82 -daily
+    compile grass83 -daily
 else
     compile grass$1 
 fi

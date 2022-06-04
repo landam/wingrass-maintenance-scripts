@@ -74,8 +74,11 @@ if test -z $1 ; then
     compile 787    
     compile 80
     compile 800
-    compile 801RC1
-    compile 81
+    compile 801
+    compile 802
+    compile 82
+    compile 820
+    compile 83
 else
     compile $1
 fi
