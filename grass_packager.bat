@@ -85,5 +85,5 @@ exit /b 0
         C:\DevTools\makensis.exe .\grass78\GRASS-Installer.nsi > .\grass78\GRASS-Installer.log
         C:\DevTools\makensis.exe .\grass80\GRASS-Installer.nsi > .\grass80\GRASS-Installer.log
         C:\DevTools\makensis.exe .\grass82\GRASS-Installer.nsi > .\grass82\GRASS-Installer.log
-		C:\DevTools\makensis.exe .\grass83\GRASS-Installer.nsi > .\grass83\GRASS-Installer.log
+	C:\DevTools\makensis.exe .\grass83\GRASS-Installer.nsi > .\grass83\GRASS-Installer.log
 exit /b 0
