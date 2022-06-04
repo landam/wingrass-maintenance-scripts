@@ -74,6 +74,7 @@ if test -z $1 ; then
     compile 80
     compile 800
     compile 82
+    compile 820
     compile 83
 else
     compile $1

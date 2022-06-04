@@ -56,7 +56,9 @@ if test -z $1 ; then
     copy 786
     copy 80
     copy 800
-    copy 81    
+    copy 82
+    copy 820
+    copy 83
 else
     copy_release $1
 fi
