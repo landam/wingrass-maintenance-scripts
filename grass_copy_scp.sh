@@ -38,15 +38,15 @@ function copy_release {
     
     scp $SOURCE_DIR/WinGRASS-* $HOST:
     # scp $SOURCE_DIR/grass-*.tar.bz2 $HOST:/osgeo/download/osgeo4w/v2/$PLATFORM/release/grass/
-    ssh $HOST scp WinGRASS-* grass.lxd:wingrass$GVERSION
+    ssh $HOST scp WinGRASS-* grass.lxd:/var/www/code_and_data/grass$GVERSION/binary/mswindows/native
     ssh $HOST rm WinGRASS-*
-    ssh $HOST ssh grass.lxd rm -f wingrass$GVERSION/WinGRASS-${VERSION}RC*
-    
+    # ssh $HOST ssh grass.lxd rm -f /var/www/code_and_data/grass$GVERSION/binary/mswindows/native/WinGRASS-${VERSION}RC*
+
     # addons
     HOST=landamar@wingrass
     TARGET_DIR=/var/www/wingrass/grass${1:0:1}${1:1:1}/$PLATFORM
 
-    ssh $HOST rm -rf $TARGET_DIR/addons/grass-${VERSION}RC*
+    #ssh $HOST rm -rf $TARGET_DIR/addons/grass-${VERSION}RC
     ssh $HOST mkdir -p $TARGET_DIR/addons/grass-$VERSION/
     scp -r $SOURCE_DIR/addons/*.zip $SOURCE_DIR/addons/*.md5sum $SOURCE_DIR/addons/logs/ $HOST:$TARGET_DIR/addons/grass-$VERSION/
 }
@@ -54,7 +54,8 @@ function copy_release {
 if test -z $1 ; then
     copy 78
     copy 786
-    copy 787    
+    copy 787
+    copy 788RC1
     copy 80
     copy 800
     copy 801
