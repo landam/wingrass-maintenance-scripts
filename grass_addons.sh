@@ -71,7 +71,8 @@ function compile {
 if test -z $1 ; then
     compile 78
     compile 786
-    compile 787    
+    compile 787
+    compile 788RC2
     compile 80
     compile 800
     compile 801

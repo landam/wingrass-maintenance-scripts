@@ -11,7 +11,7 @@ function copy {
     if [ ${1:0:1} != "8" ] ; then
 	PLATFORM="x86_64"
     fi
-    VERSION=`cat $HOME/grass$1/GRASS-$1-Package/etc/VERSIONNUMBER | cut -d' ' -f1`
+    VERSION=`cat $HOME/grass$1/GRASS-${1:0:1}${1:1:1}-Package/etc/VERSIONNUMBER | cut -d' ' -f1`
     if [ ${#1} == 2 ] ; then
 	TARGET_DIR=/var/www/wingrass/grass$1/$PLATFORM
 	scp $SOURCE_DIR/WinGRASS-* $HOST:$TARGET_DIR/
@@ -55,7 +55,7 @@ if test -z $1 ; then
     copy 78
     copy 786
     copy 787
-    copy 788RC1
+    copy 788RC2
     copy 80
     copy 800
     copy 801
