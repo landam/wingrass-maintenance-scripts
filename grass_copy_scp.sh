@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh
 
 export PATH=/c/msys64/usr/bin:${PATH}
 
@@ -14,9 +14,13 @@ function copy {
     VERSION=`cat $HOME/grass$1/GRASS-${1:0:1}${1:1:1}-Package/etc/VERSIONNUMBER | cut -d' ' -f1`
     if [ ${#1} == 2 ] ; then
 	TARGET_DIR=/var/www/wingrass/grass$1/$PLATFORM
+	# remove older installers that 30days
+	ssh $HOST "find $TARGET_DIR/WinGRASS-* -mtime +30 -exec rm {} \;"
 	scp $SOURCE_DIR/WinGRASS-* $HOST:$TARGET_DIR/
 	ssh $HOST mkdir -p $TARGET_DIR/osgeo4w/
+	ssh $HOST "find $TARGET_DIR/osgeo4w/grass-*.tar.bz2 -mtime +30 -exec rm {} \;"
 	scp $SOURCE_DIR/grass-*.tar.bz2 $HOST:$TARGET_DIR/osgeo4w/
+	ssh $HOST "find $TARGET_DIR/logs/log-* -mtime +30 -exec rm -r {} \;"
 	scp -r $SOURCE_DIR/log-* $HOST:$TARGET_DIR/logs
     else 
 	TARGET_DIR=/var/www/wingrass/grass${1:0:1}${1:1:1}/$PLATFORM
