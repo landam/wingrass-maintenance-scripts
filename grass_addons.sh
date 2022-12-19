@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Compile GRASS GIS Addons
 #
 # Options:
@@ -69,17 +69,9 @@ function compile {
 }
 
 if test -z $1 ; then
-    compile 78
-    compile 786
-    compile 787
-    compile 788RC3
-    compile 80
-    compile 800
-    compile 801
-    compile 802
-    compile 82
-    compile 820
-    compile 83
+    while read release; do
+        compile $release
+    done < releases.csv
 else
     compile $1
 fi

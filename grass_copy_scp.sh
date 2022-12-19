@@ -56,17 +56,9 @@ function copy_release {
 }
 
 if test -z $1 ; then
-    copy 78
-    copy 786
-    copy 787
-    copy 788RC3
-    copy 80
-    copy 800
-    copy 801
-    copy 802
-    copy 82
-    copy 820
-    copy 83
+    while read release; do
+        copy $release
+    done < releases.csv
 else
     copy_release $1
 fi
