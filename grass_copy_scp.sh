@@ -59,7 +59,7 @@ if test -z $1 ; then
     copy 78
     copy 786
     copy 787
-    copy 788RC2
+    copy 788RC3
     copy 80
     copy 800
     copy 801
