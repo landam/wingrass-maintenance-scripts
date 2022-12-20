@@ -36,23 +36,28 @@ function copy_release {
     GVERSION=${1:0:1}${1:1:1}
     VERSION=${1:0:1}.${1:1:1}.${1:2:4} # release
     PLATFORM=""
-    if [ ${1:0:1} != "8" ] ; then
-	PLATFORM="x86_64"
-    fi
     
+    if [ ${1:0:1} == "7" ] ; then
+	PLATFORM=x86_64
+	TARGET_PATH=$TARGET_PATH/$PLATFORM
+    fi
+
+    TARGET_DIR=/var/www/code_and_data/grass$GVERSION/binary/mswindows/native/$PLATFORM
     scp $SOURCE_DIR/WinGRASS-* $HOST:
     # scp $SOURCE_DIR/grass-*.tar.bz2 $HOST:/osgeo/download/osgeo4w/v2/$PLATFORM/release/grass/
-    ssh $HOST scp WinGRASS-* grass.lxd:/var/www/code_and_data/grass$GVERSION/binary/mswindows/native
+    ssh $HOST scp WinGRASS-* grass.lxd:$TARGET_DIR
     ssh $HOST rm WinGRASS-*
-    # ssh $HOST ssh grass.lxd rm -f /var/www/code_and_data/grass$GVERSION/binary/mswindows/native/WinGRASS-${VERSION}RC*
-
+    if [[ "$VERSION" != *"RC"* ]]; then
+	ssh $HOST ssh grass.lxd rm -f /var/www/code_and_data/grass$GVERSION/binary/mswindows/native/WinGRASS-${VERSION}RC*
+    fi
     # addons
     HOST=landamar@wingrass
     TARGET_DIR=/var/www/wingrass/grass${1:0:1}${1:1:1}/$PLATFORM
-
-    #ssh $HOST rm -rf $TARGET_DIR/addons/grass-${VERSION}RC
     ssh $HOST mkdir -p $TARGET_DIR/addons/grass-$VERSION/
     scp -r $SOURCE_DIR/addons/*.zip $SOURCE_DIR/addons/*.md5sum $SOURCE_DIR/addons/logs/ $HOST:$TARGET_DIR/addons/grass-$VERSION/
+    if [[ "$VERSION" != *"RC"* ]]; then
+	ssh $HOST rm -rf $TARGET_DIR/addons/grass-${VERSION}RC
+    fi    
 }
 
 if test -z $1 ; then
@@ -64,5 +69,3 @@ else
 fi
 
 exit 0
-
-
