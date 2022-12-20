@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Compile GRASS GIS Addons
 #
 # Options:
