@@ -45,11 +45,9 @@ function compile {
 }
 
 if test -z $1 ; then
-    # dev packages
-    compile grass78 -daily
-    compile grass80 -daily
-    compile grass82 -daily
-    compile grass83 -daily
+    while read version; do
+        compile grass$version -daily        
+    done < dev_packages.csv
 else
     compile grass$1 
 fi
