@@ -63,11 +63,11 @@ function create_log {
 }
 
 if test -z $1 ; then
-    # dev packages
-    update 83
-    update 84    
+    while read version; do
+        update $version
+    done < dev_packages.csv
 else
-    update $1 $2
+    update $1 
 fi
 
 exit 0

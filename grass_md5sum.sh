@@ -16,11 +16,11 @@ function create_md5sum {
 }
 
 if test -z $1 ; then
-    # dev packages
-    create_md5sum grass83 
-    create_md5sum grass84   
+    while read version; do
+        create_md5sum grass$version
+    done < dev_packages.csv
 else
-    create_md5sum grass$1
+    create_md5sum grass$1 
 fi
 
 exit 0

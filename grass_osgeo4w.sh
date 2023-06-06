@@ -43,9 +43,9 @@ function src_package {
 }
 
 if test -z $1 ; then
-    # dev packages
-    rsync_package 83 
-    rsync_package 84   
+    while read version; do
+        rsync_package $version
+    done < dev_packages.csv
 else
     rsync_package $1 $2 $3
 fi
