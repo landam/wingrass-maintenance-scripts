@@ -64,10 +64,8 @@ function create_log {
 
 if test -z $1 ; then
     # dev packages
-    update 78
-    update 80
-    update 82
     update 83
+    update 84    
 else
     update $1 $2
 fi

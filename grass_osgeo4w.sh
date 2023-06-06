@@ -44,10 +44,8 @@ function src_package {
 
 if test -z $1 ; then
     # dev packages
-    rsync_package 78
-    rsync_package 80
-    rsync_package 82
-    rsync_package 83
+    rsync_package 83 
+    rsync_package 84   
 else
     rsync_package $1 $2 $3
 fi
