@@ -46,6 +46,7 @@ function copy_release {
     TARGET_DIR=/var/www/code_and_data/grass$GVERSION/binary/mswindows/native/$PLATFORM
     scp $SOURCE_DIR/WinGRASS-* $HOST:
     # scp $SOURCE_DIR/grass-*.tar.bz2 $HOST:/osgeo/download/osgeo4w/v2/$PLATFORM/release/grass/
+    # ssh $HOST ssh grass.lxd mkdir -p $TARGET_DIR
     ssh $HOST scp WinGRASS-* grass.lxd:$TARGET_DIR < /dev/null 
     ssh $HOST rm WinGRASS-* < /dev/null 
     if [[ "$VERSION" != *"RC"* ]]; then

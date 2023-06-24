@@ -1,4 +1,4 @@
-@echo off
+@echo on
 
 set HOME=C:\Users\landamar\grass_packager
 cd %HOME%
@@ -11,7 +11,7 @@ call :cleanUp
 REM
 echo Compiling GRASS GIS...
 REM
-C:\msys64\usr\bin\bash.exe .\grass_compile.sh
+REM C:\msys64\usr\bin\bash.exe .\grass_compile.sh
 
 REM
 echo Clean-up for packaging...
