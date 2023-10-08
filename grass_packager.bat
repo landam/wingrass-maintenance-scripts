@@ -11,7 +11,7 @@ call :cleanUp
 REM
 echo Compiling GRASS GIS...
 REM
-REM C:\msys64\usr\bin\bash.exe .\grass_compile.sh
+C:\msys64\usr\bin\bash.exe .\grass_compile.sh
 
 REM
 echo Clean-up for packaging...
