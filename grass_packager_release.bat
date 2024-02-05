@@ -10,7 +10,7 @@ cd %HOME%
 set MAJOR=8
 set MINOR=3
 set PATCH=1
-set REV=1
+set REV=2
 
 set GVERSION=%MAJOR%%MINOR%%PATCH%
 
@@ -79,6 +79,7 @@ exit /b 0
 :preparePkg
 	cd .\grass%GVERSION%
 	call .\GRASS-Packager.bat > .\GRASS-Packager.log
+	C:\msys64\usr\bin\bash.exe ..\grass_binary_revision.sh %REV%
 	cd ..
 exit /b 0
 
