@@ -9,8 +9,8 @@ cd %HOME%
 
 set MAJOR=8
 set MINOR=3
-set PATCH=1
-set REV=2
+set PATCH=2RC1
+set REV=1
 
 set GVERSION=%MAJOR%%MINOR%%PATCH%
 
