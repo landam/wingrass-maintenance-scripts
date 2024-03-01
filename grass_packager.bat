@@ -1,4 +1,4 @@
-@echo on
+@echo off
 
 set HOME=C:\Users\landamar\grass_packager
 cd %HOME%
@@ -35,7 +35,7 @@ REM
 call:createPkg
 
 REM
-REM Create md5sum files
+echo Create md5sum files
 REM
 C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh
 
