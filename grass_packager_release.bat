@@ -8,8 +8,8 @@ set HOME=C:\Users\landamar\grass_packager
 cd %HOME%
 
 set MAJOR=8
-set MINOR=3
-set PATCH=2
+set MINOR=4
+set PATCH=0RC1
 set REV=1
 
 set GVERSION=%MAJOR%%MINOR%%PATCH%
