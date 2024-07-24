@@ -56,22 +56,22 @@ exit /b %ERRORLEVEL%
 exit /b 0
 
 :cleanUpPkg
-	if exist .\grass83 rmdir /S/Q .\grass83
-	xcopy C:\msys64\usr\src\grass83\mswindows\*     .\grass83 /S/V/I > NUL
 	if exist .\grass84 rmdir /S/Q .\grass84
 	xcopy C:\msys64\usr\src\grass84\mswindows\*     .\grass84 /S/V/I > NUL
+	if exist .\grass85 rmdir /S/Q .\grass85
+	xcopy C:\msys64\usr\src\grass85\mswindows\*     .\grass85 /S/V/I > NUL
 exit /b 0
 
 :preparePkg
-	cd .\grass83
+	cd .\grass84
 	call .\GRASS-Packager.bat > .\GRASS-Packager.log
 	cd ..
-	cd .\grass84
+	cd .\grass85
 	call .\GRASS-Packager.bat > .\GRASS-Packager.log
 	cd ..
 exit /b 0
 
 :createPkg
-	C:\DevTools\makensis.exe .\grass83\GRASS-Installer.nsi > .\grass83\GRASS-Installer.log
 	C:\DevTools\makensis.exe .\grass84\GRASS-Installer.nsi > .\grass84\GRASS-Installer.log
+	C:\DevTools\makensis.exe .\grass85\GRASS-Installer.nsi > .\grass85\GRASS-Installer.log
 exit /b 0
