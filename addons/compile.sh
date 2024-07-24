@@ -99,7 +99,7 @@ for c in "db" "display" "general" "gui/wxpython" "imagery" "misc" "raster" "rast
 	    MANBASEDIR="$path/docs/man" \
 	    SCRIPTDIR="$path/scripts" \
 	    ETC="$path/etc" \
-            SOURCE_URL="https://github.com/OSGeo/grass-addons/tree/master/grass${GRASS_VERSION}/" > \
+            SOURCE_URL="https://github.com/OSGeo/grass-addons/tree/grass${GRASS_VERSION}/src/" > \
             "$ADDON_PATH/logs/$m.log" 2>&1
 	if [ `echo $?` -eq 0 ] ; then
 	    printf "%-30s%s\n" "$c/$m" "SUCCESS" >> "$ADDON_PATH/logs/${INDEX_FILE}.log"
