@@ -61,6 +61,7 @@ function compile {
 	    sed "s/GISBASE/$replace_gisbase/" $f > tmp
 	    mv tmp $f
 	done
+	rm -rf grass-addons
 	zip -r $mod.zip *
 	mv $mod.zip ..
 	cd ..
