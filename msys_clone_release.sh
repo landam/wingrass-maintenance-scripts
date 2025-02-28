@@ -9,9 +9,9 @@ fi
 release=$1
 release_dir=`echo $release | sed 's/\.//g'`
 cd /usr/src
-(cd grass78; git pull)
+(cd grass85; git pull)
 rm -rf *RC* # remove all RC (clean-up)
-git clone grass78 grass$release_dir
+git clone grass85 grass$release_dir
 cd grass$release_dir
 git checkout $release
 git pull
