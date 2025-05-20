@@ -6,14 +6,12 @@ cd %HOME%
 REM
 echo Clean-up...
 REM
-REM call :cleanUp
+call :cleanUp
 
 REM
 echo Compiling GRASS GIS...
 REM
-REM C:\msys64\usr\bin\bash.exe .\grass_compile.sh 85
-
-pause
+C:\msys64\usr\bin\bash.exe .\grass_compile.sh 85
 
 REM
 echo Clean-up for packaging...
@@ -36,27 +34,20 @@ echo Creating standalone installer...
 REM
 call:createPkg
 
-pause
-
 REM
 REM Create md5sum files
 REM
-REM C:\msys32\usr\bin\bash.exe .\grass_md5sum.sh 32 73
 C:\msys64\usr\bin\bash.exe .\grass_md5sum.sh 85
 
 REM
 echo Building addons...
 REM
-REM C:\msys32\usr\bin\bash.exe .\grass_addons.sh 32
-REM C:\msys64\usr\bin\bash.exe .\grass_addons.sh 64 85
-
-pause 
+C:\msys64\usr\bin\bash.exe .\grass_addons.sh 85
 
 REM
 echo Publishing packages...
 REM
-REM C:\msys32\usr\bin\bash.exe .\grass_copy_wwwroot.sh 32
-REM C:\msys64\usr\bin\bash.exe .\grass_copy_wwwroot.sh 64
+REM C:\msys64\usr\bin\bash.exe .\grass_copy_scp.sh 85
 
 exit /b %ERRORLEVEL%
 
@@ -65,8 +56,8 @@ exit /b %ERRORLEVEL%
 exit /b 0
 
 :cleanUpPkg
-	if exist .\grass81 rmdir /S/Q .\grass85
-	xcopy C:\msys64\usr\src\grass85\mswindows\*     .\grass81 /S/V/I > NUL
+	if exist .\grass85 rmdir /S/Q .\grass85
+	xcopy C:\msys64\usr\src\grass85\mswindows\*     .\grass85 /S/V/I > NUL
 exit /b 0
 
 :preparePkg
